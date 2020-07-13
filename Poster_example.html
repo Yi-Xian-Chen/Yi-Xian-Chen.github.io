@@ -65,13 +65,13 @@ margin-top:0px;
       <div class='panel panel-default'>
         <div class='panel-body'>
           <h3>Numerical Methods</h3>
-          <p> We first use LA-COMPASS code to model the pebble-isolation process of a 10M⊕ mass super-Earth core in a fiducial isothermal disk, and measure the evolution of dust 
+          <p> We first use LA-COMPASS code to model the pebble-isolation process of a 10M⊕ mass super-Earth core in a fiducial scale-free protoplanetary disk (PPD) model, and measure the evolution of dust 
             size distribution (the surface density of dust in a range of size bins) at the pebble barrier and around the direct planet vicinity. The full coagulation code
               of LA-COMPASS model 151 dust species as different fluids, and solves their hydrodynamical equations and coagulation equations at the same time.</p>
           <p><img src='https://yi-xian-chen.github.io/pebbleisolation.png' width='100%' height='auto'></p>
           <p class='small'><em>Figure 1: Dust surface density distribution inside the protoplanetary disk after 10000 orbits.
              Purple dot indicates the location of the planet and pink dot indicates the radius of a pebble ring at the planet-induced pressure barrier. </em></p>
-          <p>From the simulations, we infer two sets of opacity laws for the unperturbed disk and the perturbed disk (see above figure), and use 1D atmospheric model (Piso & Youdin 2014)
+          <p>From the simulations, we infer two sets of dust size distributions and opacity laws for the unperturbed disk and the perturbed disk (see above figure), and use 1D atmospheric model (Piso & Youdin 2014)
             to numerically calculate the planet growth in the quasi-steady accretion phase. We apply the treatment of Ali-Dib et al. (2020) for entropy advection, in which an additional
             outer convective layer is imposed and prevents cooling.</p>
         </div>
@@ -81,22 +81,22 @@ margin-top:0px;
       <div class='panel panel-default'>
         <div class='panel-body'>
           <h3>Preservation of Super Earths</h3>
-          <p>In the simulation of a protoplanetary disk without a planet, the dust size distribution quickly becomes steady, and the opacity law inferred from the
-          size distribution around the planet is similar to values used in previous atmospheric growth calculations (Lee et al. 2014, Ali-Dib et al. 2020). However, 
-           in the perturbed case, as pebble species accumulate in the planet-induced pressure barrier outside the planet's orbit, the local fragmentation rate also rises, which
-           produces more sub-mm grains that pass through the barrier, and elevates the effective dust opacity at the planet's vicinity compared to the unperturbed disk. </p>
+          <p>In the simulation of a PPD without a planet, the dust size distribution quickly becomes steady, and the opacity law inferred from the
+          size distribution around the planet is similar to values used in previous atmospheric growth calculations (Lee et al. 2014). However, 
+           in the perturbed case, as pebble species accumulate in the planet-induced pressure barrier outside the planet's orbit, the local fragmentation also
+           produces more sub-mm grains that pass through the barrier, and elevates the effective dust opacity at the planet's vicinity. </p>
           <p><a href='https://yi-xian-chen.github.io/dsd.png' target='_blank'>
             <img src='https://yi-xian-chen.github.io/dsd.png' width='100%' height='auto'></a></p>
           <p class='small'><em>Figure 2: The dust dize distribution (surface density fraction) at the planet location in the unperturbed disk, and in the planet-perturbed disk. We used 151 species of dust, with their sizes logarithmically distributed in a range of 
               1e-4 - 1e2 cm. </em></p>
           <p>Results show that there is a ten-fold increase of the metallicity of small grains, and therefore opacity,
-              induced by the high fragmentation rate inside the pebble barrier. When we adopt the boundary condition from the unperturbed values of an empirical Minimum Mass Extrasolar Nebula (Lee et al. 2014) model.
+              induced by the high fragmentation rate inside the pebble barrier. We find that for the Minimum Mass Extrasolar Nebula (Lee et al. 2014) disk environment at 1au,
               the enhancement of opacity alone (caused by pebble isolation) is able to prolong the runaway timescale by a factor of ∼10 and to prevent the transition from cores to gas giant planets.
-              Although the inclusion of entropy advection further doubles the runaway timescale, its contribution is overshadowed by the effect of opacity enhancement since the Hill radius is large enough.
-              For a super-Earth located at 0.1 au, the runaway timescale in unperturbed disk is greater than typical disk depletion timescale, but an enhanced opacity is enough to quench runaway. 
-              Entropy advection further delays the onset of runaway accretion by more than another order of magnitude
+              Although the inclusion of entropy advection further doubles the runaway timescale, its contribution is overshadowed by the effect of opacity enhancement since the accretion realm is large enough.
+              For a super-Earth located at 0.1 au, the runaway timescale in unperturbed disk may still be less than disk lifetime, but an enhanced opacity is enough to quench runaway. 
+              Entropy advection further delays the onset of runaway accretion
               because the fresh external supply of entropy causes most of the T<2000 K outer zone to become convective. In the radiative zone 
-              the temperature is mostly above the dust sublimation limit, therefore grain opacity enhancement has little influence on the atmospheric structure in the entropy advection scenario.
+              the temperature is mostly above the dust sublimation limit, therefore grain opacity enhancement has little influence on the atmospheric structure.
               In any case, the super-Earths are robustly preserved at close-in radii.
             </p>
           <p><a href='https://yi-xian-chen.github.io/growth.png' target='_blank'>
@@ -144,7 +144,7 @@ margin-top:0px;
       <div class='panel panel-default'>
         <div class='panel-body'>
           <h4>Relevant Study: Type II Migration Revisited</h4>
-          <p> Planet migration is another factor that endangers the preservation of planets.
+          <p class='small'> Planet migration is another factor that endangers the preservation of planets.
               Specially, the Type II migration of gap-opening planets should be mitigated in order to explain for observed occurence rates of long period gas giants.
               In another relevant work (Chen et al. in submission), we find that the associated gap profile of gas giants modifies the location of Lindblad 
               resonances. In the proximity of the planet's orbit, high-order Lindblad torques are weakened by the gas depletion in the gap while 
