@@ -16,27 +16,27 @@ img {
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <title>Yi-Xian's homepage </title>
 <style>
-  .video-container,
-  .image-container {
-      float: left;
-      margin-right: 20px; /* Space between video and image */
+  .container {
+      display: flex;
+      justify-content: space-between; /* Space between items */
+      align-items: flex-start; /* Align items to the top */
+      gap: 20px; /* Space between the items */
   }
-  .video-container video,
-  .image-container img {
-      display: block;
+  .container img,
+  .container video {
       max-width: 100%; /* Ensure media scales with the container */
       height: auto; /* Maintain aspect ratio */
   }
-  .video-container video {
+  .container video {
       width: 30%;
   }
-  .image-container img {
+  .container img {
       width: 50%;
   }
 </style>
 </head>
 <body>
- <div 'container' style='margin-top:20px'>
+ <div class='container' style='margin-top:20px'>
   <div class="row">
     <div class='col-sm-10'>
       <div class='panel panel-default'>
