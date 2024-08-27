@@ -15,6 +15,25 @@ img {
 <meta name='description' content=''>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <title>Yi-Xian's homepage </title>
+<style>
+  .video-container,
+  .image-container {
+      float: left;
+      margin-right: 20px; /* Space between video and image */
+  }
+  .video-container video,
+  .image-container img {
+      display: block;
+      max-width: 100%; /* Ensure media scales with the container */
+      height: auto; /* Maintain aspect ratio */
+  }
+  .video-container video {
+      width: 30%;
+  }
+  .image-container img {
+      width: 50%;
+  }
+</style>
 </head>
 <body>
  <div 'container' style='margin-top:20px'>
@@ -45,10 +64,14 @@ img {
     where not only the intrinsic luminosity contributes a reduction in effective gravity, 
     but also feedback from other energy fluxes (gravitational & thermal, the former of which is analogous to Eddington feedback for black holes).
   </p>
-  <p> <video style = "width: 30%" height="auto" controls>
-      <source src="videos/mass_250_in_25_iso_midplane.mp4" type="video/mp4"></video>
-      <img src='https://yi-xian-chen.github.io/pics/spacetime.png' style="width:50%;" height='auto'>
-</p>
+  <div class="video-container">
+    <video controls>
+        <source src="videos/mass_250_in_25_iso_midplane.mp4" type="video/mp4">
+    </video>
+</div>
+<div class="image-container">
+    <img src="https://yi-xian-chen.github.io/pics/spacetime.png" alt="Spacetime Image">
+</div>
 <p class='text-center'><em> Left: Density, temperature and radial velocity fluctuations in quasi-steady state for our stellar accretion simulations.
    Right: Time evolution of angle-averaged radial profiles (density, temperature, mass accretion rate and optical depth). </em></p>
   <p>
