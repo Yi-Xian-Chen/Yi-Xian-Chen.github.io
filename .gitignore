@@ -1,0 +1,7 @@
+# Ignore run directories, can customize
+rundir/
+
+# Ignore Jupyter notebook files
+*.ipynb
+
+*2025.html
