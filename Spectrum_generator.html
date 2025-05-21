@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Jupiter Spectrum Interpolator</title>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<style>
+body { font-family: sans-serif; max-width: 1600px; margin: auto;
+padding: 1em; }
+label { display: block; margin-top: 1em; }
+input { width: 100%; padding: 0.5em; margin-top: 0.25em; }
+button { margin-top: 1em; padding: 0.5em 1em; }
+</style>
+</head>
+<body>
+<h1>Stellar Spectrum Interpolator</h1>
+<label>Teff (100–500 K): <input type="number" id="teff"
+value="300"></label>
+<label>log(g) (1.8–3.6): <input type="number" id="logg" value="2.4"
+step="0.1"></label>
+<label>xmin: <input type="number" id="xmin" value="0.5"></label>
+<label>xmax: <input type="number" id="xmax" value="1000"></label>
+<label>Number of points: <input type="number" id="numPoints" value="1000"></label>
+<button onclick="interpolateAndPlot()">Plot Spectrum</button>
+<div id="plot" style="margin-top: 2em; height: 700px;"></div>
+<script>
+let spectra = [];
+fetch('spectra.json')
+ .then(res => res.json())
+ .then(data => {
+spectra = data;
+ });
+function interpolateAndPlot() {
+const Teff_input =
+parseFloat(document.getElementById("teff").value);
+const logg_input =
+parseFloat(document.getElementById("logg").value);
+const xmin =
+parseFloat(document.getElementById("xmin").value);
+const xmax =
+parseFloat(document.getElementById("xmax").value);
+const numPoints =
+parseInt(document.getElementById("numPoints").value);
+
+// Generate logarithmically spaced x values
+const x = [];
+if (xmin <= 0) {
+  alert("xmin must be greater than 0 for logarithmic spacing");
+  return;
+}
+const logMin = Math.log10(xmin);
+const logMax = Math.log10(xmax);
+const logStep = (logMax - logMin) / (numPoints - 1);
+
+for (let i = 0; i < numPoints; i++) {
+  const logVal = logMin + i * logStep;
+  x.push(Math.pow(10, logVal));
+}
+
+// Nearest neighbor search
+let minDist = Infinity;
+let best = null;
+for (const s of spectra) {
+const dTeff = s.Teff - Teff_input;
+const dlogg = s.logg - logg_input;
+const dist = dTeff * dTeff + dlogg * dlogg;
+// Debug logging (optional, remove if not needed)
+console.log(`Checking: Teff=${s.Teff}, logg=${s.logg}, distance=${dist}`);
+if (dist < minDist) {
+minDist = dist;
+best = s;
+ }
+ }
+if (!best) {
+alert("No matching spectrum found.");
+return;
+ }
+// Interpolation
+const flux_interp = x.map(xi => linearInterpolate(xi,
+best.wavelength, best.flux));
+// Plot
+Plotly.newPlot('plot', [{
+x: x,
+y: flux_interp,
+type: 'scatter',
+mode: 'lines',
+name: `T${best.Teff}, logg ${best.logg}`
+ }], {
+title: 'Interpolated Spectrum (Log Spacing)',
+xaxis: { 
+  title: 'Wavelength (micron)',
+  type: 'log' 
+},
+yaxis: { title: 'Flux [milli-Jansky]',
+type: 'log' 
+}
+ });
+ }
+function linearInterpolate(x, xarr, yarr) {
+if (x <= xarr[0]) return yarr[0];
+if (x >= xarr[xarr.length - 1]) return yarr[yarr.length - 1];
+for (let i = 0; i < xarr.length - 1; i++) {
+if (x >= xarr[i] && x <= xarr[i + 1]) {
+const t = (x - xarr[i]) / (xarr[i + 1] - xarr[i]);
+return yarr[i] * (1 - t) + yarr[i + 1] * t;
+ }
+ }
+return 0; // fallback
+ }
+</script>
+</body>
+</html>
